@@ -1,0 +1,1 @@
+{"version":3,"file":"contatos-lista.component.js","sourceRoot":"","sources":["contatos-lista.component.ts"],"names":[],"mappings":";;;;;;;AAAA,wCAAyC;AAOzC,IAAa,sBAAsB,GAAnC;CAAqC,CAAA;AAAxB,sBAAsB;IALlC,gBAAS,CAAC;QACT,QAAQ,EAAE,MAAM,CAAC,EAAE;QACnB,QAAQ,EAAE,gBAAgB;QAC1B,WAAW,EAAE,+BAA+B;KAC7C,CAAC;GACW,sBAAsB,CAAE;AAAxB,wDAAsB"}

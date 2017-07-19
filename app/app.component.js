@@ -11,7 +11,10 @@ let AppComponent = class AppComponent {
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        template: '<h1>Rodando minha aplicação</h1>'
+        template: `
+    <h1>Rodando minha aplicação</h1>
+    <contatos-lista></contatos-lista>
+  `
     })
 ], AppComponent);
 exports.AppComponent = AppComponent;
