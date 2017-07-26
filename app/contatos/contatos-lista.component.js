@@ -15,7 +15,10 @@ let ContatosListaComponent = class ContatosListaComponent {
         this.contatoService = contatoService;
     }
     ngOnInit() {
-        this.contatos = this.contatoService.getContatos();
+        this.contatoService.getContatos()
+            .then((contatos) => {
+            this.contatos = contatos;
+        }).catch(err => console.log('error'));
     }
 };
 ContatosListaComponent = __decorate([
