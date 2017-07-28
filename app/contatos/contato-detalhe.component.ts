@@ -7,16 +7,12 @@ import { Contato } from './contato.model';
 @Component({
   moduleId: module.id,
   selector: 'contato-detalhe',
-  templateUrl: 'contato-detalhe.component.html',  
-  styles:[`
-    .ng-valid[required]{
-      border: 1px solid green;
-    }
-  `]
+  templateUrl: 'contato-detalhe.component.html'
 })
 export class ContatoDetalheComponent implements OnInit{
 
   contato: Contato;
+  private isNew: boolean = true;
 
   constructor(
     private contatoService: ContatoService,
@@ -30,15 +26,38 @@ export class ContatoDetalheComponent implements OnInit{
     this.route.params.forEach((params: Params) => {      
       let id: number = +params['id']
       if(id){
+        this.isNew = false;
         this.contatoService.getContato(id)
-          .then((contato: Contato) => {
+          .then((contato: Contato) => {            
             this.contato = contato;
+
           })
       }      
     })
   }
 
-  teste(): void{
-    console.log(this.contato);
+
+  getFormGroupClass(isValid: boolean, isPristine: boolean): {} {
+    return {
+      'form-group': true,
+      'has-danger': !isValid && !isPristine,
+      'has-success': isValid && !isPristine
+    };
+  }
+
+  getFormControlClass(isValid: boolean, isPristine: boolean): {} {
+    return {
+      'form-control': true,
+      'form-control-danger': !isValid && !isPristine,
+      'form-control-success': isValid && !isPristine
+    };
+  }
+  
+  onSubmit(): void {
+    if(this.isNew){
+      console.log('cadastrando novo contato');
+    }else{
+      console.log('alterar contato');
+    }    
   }
 }
