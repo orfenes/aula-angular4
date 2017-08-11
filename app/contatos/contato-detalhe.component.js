@@ -53,7 +53,7 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
             promisse = this.contatoService.create(this.contato);
         }
         else {
-            console.log('alterar contato');
+            promisse = this.contatoService.update(this.contato);
         }
         promisse.then(contato => this.location.back());
     }
