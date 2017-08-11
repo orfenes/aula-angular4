@@ -15,6 +15,7 @@ let ContatoService = class ContatoService {
     constructor(http) {
         this.http = http;
         this.contatosUrl = 'app/contatos';
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
     getContatos() {
         return this.http.get(this.contatosUrl)
@@ -25,6 +26,12 @@ let ContatoService = class ContatoService {
     getContato(id) {
         return this.getContatos()
             .then((contatos) => contatos.find(contato => contato.id === id));
+    }
+    create(contato) {
+        return this.http.post(this.contatosUrl, JSON.stringify(contato), { headers: this.headers })
+            .toPromise()
+            .then((response) => response.json().data)
+            .catch(this.handleError);
     }
     handleError(err) {
         return Promise.reject(err.message || err);

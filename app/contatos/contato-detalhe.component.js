@@ -48,12 +48,14 @@ let ContatoDetalheComponent = class ContatoDetalheComponent {
         };
     }
     onSubmit() {
+        let promisse;
         if (this.isNew) {
-            console.log('cadastrando novo contato');
+            promisse = this.contatoService.create(this.contato);
         }
         else {
             console.log('alterar contato');
         }
+        promisse.then(contato => this.location.back());
     }
 };
 ContatoDetalheComponent = __decorate([
