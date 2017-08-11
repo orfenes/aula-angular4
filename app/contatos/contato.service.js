@@ -35,9 +35,17 @@ let ContatoService = class ContatoService {
             .catch(this.handleError);
     }
     update(contato) {
-        let url = `${this.contatosUrl}/${contato.id}`;
+        const url = `${this.contatosUrl}/${contato.id}`;
         return this.http
             .put(url, JSON.stringify(contato), { headers: this.headers })
+            .toPromise()
+            .then(() => contato)
+            .catch(this.handleError);
+    }
+    delete(contato) {
+        const url = `${this.contatosUrl}/${contato.id}`;
+        return this.http
+            .delete(url, { headers: this.headers })
             .toPromise()
             .then(() => contato)
             .catch(this.handleError);

@@ -21,7 +21,7 @@
             <td>{{ c.nome }}</td>
             <td>{{ c.email }}</td>
             <td>{{ c.telefone }}</td>
-            <td><button class="btn btn-success">Deletar</button></td>
+            <td><button class="btn btn-success" (click)="onDelete(c); $event.stopPropagation()" >Deletar</button></td>
           </tr>
         </tbody>
 
