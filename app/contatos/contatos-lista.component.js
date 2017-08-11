@@ -50,7 +50,10 @@ let ContatosListaComponent = class ContatosListaComponent {
         this.mensagem = mensagem;
         this.montarClasses(mensagem.tipo);
         if (mensagem.tipo !== 'danger') {
-            setTimeout(() => {
+            if (this.currentTimout) {
+                clearTimeout(this.currentTimout);
+            }
+            this.currentTimout = setTimeout(() => {
                 this.mensagem = undefined;
             }, 3000);
         }
