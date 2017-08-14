@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
+
+import { Observable } from 'rxjs';
 import 'rxjs/add/operator/toPromise';
 
 import { Contato } from './contato.model';
@@ -51,6 +53,12 @@ export class ContatoService{
            .toPromise() 
            .then(() => contato as Contato)
            .catch(this.handleError);
+  }
+
+  search(term: string): Observable<Contato[]>{
+    return this.http
+          .get(`${this.contatosUrl}/?nome=${term}`)
+          .map((res: Response) => res.json().data as Contato[]);
   }
 
   private handleError(err: any): Promise<any>{
