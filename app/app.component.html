@@ -1,7 +1,14 @@
 <nav class="navbar navbar-light bg-faded">
-  <a  routerLink="/" class="navbar-brand" href="#">Contatos</a>
-  <a  routerLink="/contato/save" class="navbar-brand" href="#">Novo</a>  
+  <a class="navbar-brand" routerLink="/">Contatos</a>
+  <ul class="nav navbar-nav">    
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/contato/save">Novo</a>
+    </li>
+  </ul>
+  <form class="form-inline float-xs-right">
+    <input class="form-control" type="text" placeholder="Search" name="busca" [(ngModel)]="termo">
+  </form>
 </nav>
 
  <router-outlet></router-outlet>  
- <contato-busca></contato-busca>
+ <contato-busca [busca]="termo"></contato-busca>
