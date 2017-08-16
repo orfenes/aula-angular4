@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, Input, SimpleChanges, SimpleChange } from '@angular/core';
+import { Component, EventEmitter, OnInit, OnChanges, Input,Output, SimpleChanges, SimpleChange } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
@@ -25,6 +25,7 @@ import { ContatoService } from './contato.service';
 export class ContatoBuscaComponent implements OnInit, OnChanges {
 
   @Input() busca: string;
+  @Output() buscaChange: EventEmitter<string> = new EventEmitter<string>();
   contatos: Observable<Contato[]>;  
   private termosDaBusca: Subject<string> = new Subject<string>();
 
@@ -52,10 +53,12 @@ export class ContatoBuscaComponent implements OnInit, OnChanges {
 
   search(termo: string): void{    
     this.termosDaBusca.next(termo);
+    this.buscaChange.emit(termo);
   }
 
   verDetalhe(contato: Contato): void{
     let link = ['contato/save', contato.id];
     this.router.navigate(link);
+    this.buscaChange.emit('');
   }
 }
